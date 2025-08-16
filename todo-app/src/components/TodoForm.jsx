@@ -12,20 +12,20 @@ function TodoForm({ onAdd }) {
       text: t,
       completed: false,
     });
-    setText(""); // clear input
+    setText("");
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: "flex", gap: 8 }}>
+    <>
       <input
         type="text"
         placeholder="Add a task..."
         value={text}
-        onChange={(e) => setText(e.target.value)} // e.target.value ✅
-        style={{ flex: 1, padding: 8 }}
+        onChange={(e) => setText(e.target.value)} 
+        id="inp"
       />
-      <button>Add</button>
-    </form>
+      <button onClick={handleSubmit} id="btn">Add</button>
+      </>
   );
 }
 

@@ -7,11 +7,11 @@ function App() {
 
   const [todos, setTodos] = React.useState([]);
 
-   function addTodo(todo) {
+  function addTodo(todo) {
     setTodos((prev) => [todo, ...prev]);
   }
 
-   function toggleTodo(id) {
+  function toggleTodo(id) {
     setTodos((prev) =>
       prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
     );
@@ -22,14 +22,17 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Todo App</h1>
-      <TodoForm onAdd={addTodo} />
-      <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+    <div className='container'>
+      <h1 className='todoHeading'>Todo App</h1>
+      <div id="sec1">
+        <TodoForm onAdd={addTodo} />
+      </div>
+      <div id='sec2'>
+        <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+      </div>
 
     </div>
   )
-}
-import TodoItem from './components/TodoList.jsx';
+} 
 
 export default App

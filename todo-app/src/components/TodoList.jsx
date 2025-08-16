@@ -1,10 +1,12 @@
 import React from 'react'
 
 function TodoList({ todos, onToggle, onDelete }) {
-  if (todos.length === 0) return <p>No todos yet</p>;
+  if (todos.length === 0) {
+    return <p>No todos yet</p>;
+  }
 
   return (
-    <ul style={{ listStyle: "none", padding: 0, marginTop: 16 }}>
+    <ul >
       {todos.map((t) => (
         <TodoItem key={t.id} todo={t} onToggle={onToggle} onDelete={onDelete} />
       ))}
@@ -14,15 +16,7 @@ function TodoList({ todos, onToggle, onDelete }) {
 
 function TodoItem({ todo, onToggle, onDelete }) {
   return (
-    <li
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-        padding: "8px 0",
-        borderBottom: "1px solid #eee",
-      }}
-    >
+    <li className='todo-list'>
       <input
         type="checkbox"
         checked={todo.completed}
@@ -31,7 +25,7 @@ function TodoItem({ todo, onToggle, onDelete }) {
       <span style={{ flex: 1, textDecoration: todo.completed ? "line-through" : "none" }}>
         {todo.text}
       </span>
-      <button onClick={() => onDelete(todo.id)}>Delete</button>
+      <button onClick={() => onDelete(todo.id)} >✖</button>
     </li>
   );
 }
