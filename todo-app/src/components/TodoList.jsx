@@ -1,14 +1,24 @@
 import React from 'react'
 
-function TodoList({ todos, onToggle, onDelete }) {
+function TodoList({ todos, onToggle, onDelete, checkedState }) {
   if (todos.length === 0) {
     return <p>No todos yet</p>;
   }
 
+  const filterTodo=todos.filter((todo)=>{
+    if(checkedState === "checked"){
+      return todo.completed;
+    }
+    if(checkedState === "unchecked"){
+      return !todo.completed
+    }
+    return todo;
+  })
+
   return (
     <ul >
-      {todos.map((t) => (
-        <TodoItem key={t.id} todo={t} onToggle={onToggle} onDelete={onDelete} />
+      {filterTodo.map((t) => (
+        <TodoItem key={t.id} todo={t} onToggle={onToggle} onDelete={onDelete} /> 
       ))}
     </ul>
   );
@@ -16,7 +26,7 @@ function TodoList({ todos, onToggle, onDelete }) {
 
 function TodoItem({ todo, onToggle, onDelete }) {
   return (
-    <li className='todo-list'>
+    <li className='todoList'>
       <input
         type="checkbox"
         checked={todo.completed}
